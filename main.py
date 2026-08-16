@@ -29,7 +29,7 @@ class LiveNotifyPlugin(Star):
     def __init__(self, context: Context, config: AstrBotConfig):
         super().__init__(context)
         self.config = config
-        self.client = httpx.AsyncClient(timeout=15)
+        self.client = httpx.AsyncClient(timeout=15, trust_env=False)  # 不走 AstrBot 全局代理，直连内部接口
         self.task = None
 
     async def initialize(self):
