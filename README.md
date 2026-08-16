@@ -1,4 +1,4 @@
-# 📢 开播推送
+# 📢 OvOrange-B站开播推送
 
 AstrBot 插件，联动 bilimonitor 的开播状态接口，主播开播时自动推送通知到指定会话。
 
@@ -17,6 +17,7 @@ astrbot_plugin_live_notify/
 ├── main.py           # 插件主体，轮询与推送
 ├── _conf_schema.json # 配置项
 ├── metadata.yaml     # 插件元数据
+├── logo.png          # 插件 Logo
 └── README.md         # 项目说明
 ```
 
@@ -55,5 +56,4 @@ astrbot_plugin_live_notify/
 ---
 
 **仓库地址：** https://github.com/KuAasagi/OvOrange-api
-**OverOrange：** https://ovorange.phrolove.top
 *本插件仅供技术交流使用，请合理使用接口并遵守相关法律法规。*
