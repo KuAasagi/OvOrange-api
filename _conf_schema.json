@@ -1,0 +1,32 @@
+{
+  "api_base": {
+    "description": "bilimonitor 服务地址（含协议和端口，不带末尾斜杠），如 http://127.0.0.1:8080",
+    "type": "string",
+    "default": "http://127.0.0.1:8080"
+  },
+  "room_ids": {
+    "description": "要监控开播的房间号（支持短号），逗号或换行分隔，如 21452505,80397",
+    "type": "text",
+    "default": ""
+  },
+  "interval": {
+    "description": "轮询间隔（秒），建议不小于 15，合法范围 10~3600",
+    "type": "int",
+    "default": 30
+  },
+  "target_umos": {
+    "description": "推送目标会话 unified_msg_origin，一行一个；也可在聊天里发送 /live_notify bind 自动绑定当前会话",
+    "type": "text",
+    "default": ""
+  },
+  "fetch_meta": {
+    "description": "是否额外调用 /api/rooms 获取主播名与直播标题（仅对监控内房间有效；失败自动降级为仅房间号）",
+    "type": "bool",
+    "default": true
+  },
+  "message_template": {
+    "description": "开播通知模板，可用占位符：{uname} {title} {room_id} {url}",
+    "type": "text",
+    "default": "🎤 {uname} 开播啦！\n{title}\n{url}"
+  }
+}
