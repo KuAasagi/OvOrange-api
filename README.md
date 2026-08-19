@@ -27,6 +27,7 @@ astrbot_plugin_live_notify/
 | :--- | :--- |
 | `/live_notify bind` | 绑定当前会话为推送目标 |
 | `/live_notify unbind` | 解绑当前会话 |
+| `/live_notify atall on\|off` | 开启或关闭 @全体成员 |
 | `/live_notify list` | 查看监控房间和推送目标 |
 | `/live_notify status` | 手动查询一次开播状态 |
 
@@ -39,6 +40,7 @@ astrbot_plugin_live_notify/
 - **轮询间隔 interval**：状态轮询间隔，单位秒，建议不小于 15。
 - **推送目标 target_umos**：推送会话列表，一行一个，也可用 `/live_notify bind` 绑定。
 - **信息补全 fetch_meta**：是否从 `/api/rooms` 获取主播名和直播标题，默认开启。
+- **全体成员提醒 at_all**：推送时是否 @全体成员，默认关闭，也可用 `/live_notify atall on|off` 切换。
 - **通知模板 message_template**：推送文案，支持 `{uname}` `{title}` `{room_id}` `{url}`。
 
 ## 🚀 安装
@@ -50,6 +52,7 @@ astrbot_plugin_live_notify/
 ## 📌 注意事项
 
 - 主动推送依赖平台适配器支持主动消息，QQ 官方接口和企业微信不支持。
+- @全体成员 需要机器人具备对应群的 @全体成员 权限，部分平台不支持该消息段。
 - 需要 bilimonitor 提供 `/api/status` 开播状态接口，请先确认接口可用。
 - 接口状态缓存 30 秒，轮询间隔小于 30 秒也无法更实时。
 
