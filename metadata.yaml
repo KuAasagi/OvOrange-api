@@ -2,7 +2,7 @@ name: astrbot_plugin_live_notify
 display_name: OvOrange-B站开播推送
 desc: 轮询 bilimonitor 的 /api/status 开播状态接口，主播开播时向绑定会话主动推送通知。
 short_desc: 主播开播自动推送（bilimonitor 联动）
-version: v1.0.1
+version: v1.0.2
 author: KuAasagi
 repo: https://github.com/KuAasagi/OvOrange-LiverMonitor
 support_platforms:
