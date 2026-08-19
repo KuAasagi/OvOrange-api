@@ -120,6 +120,8 @@ class LiveNotifyPlugin(Star):
             .replace("{url}", f"https://live.bilibili.com/{rid}")
         )
         chain = MessageChain([Plain(text)])
+        if self.config.get("at_all"):
+            chain.at_all()  # 开启时推送附带 @全体成员
         for umo in self.targets:
             try:
                 ok = await self.context.send_message(umo, chain)
@@ -131,7 +133,7 @@ class LiveNotifyPlugin(Star):
                 logger.error(f"开播推送失败 {umo}：{e}")
 
     @filter.command("live_notify")
-    async def live_notify(self, event: AstrMessageEvent, action: str = "help"):
+    async def live_notify(self, event: AstrMessageEvent, action: str = "help", value: str = ""):
         """开播推送管理。"""
         umo = event.unified_msg_origin
         if action == "bind":
@@ -146,11 +148,25 @@ class LiveNotifyPlugin(Star):
             self.config["target_umos"] = "\n".join(t for t in self.targets if t != umo)
             self.config.save_config()
             yield event.plain_result("已解绑当前会话。")
+        elif action == "atall":
+            v = value.strip().lower()
+            if v in ("on", "1", "true", "开", "开启", "yes"):
+                self.config["at_all"] = True
+                self.config.save_config()
+                yield event.plain_result("已开启 @全体成员 提醒。")
+            elif v in ("off", "0", "false", "关", "关闭", "no"):
+                self.config["at_all"] = False
+                self.config.save_config()
+                yield event.plain_result("已关闭 @全体成员 提醒。")
+            else:
+                state = "开启" if self.config.get("at_all") else "关闭"
+                yield event.plain_result(f"@全体成员 当前{state}，用法：/live_notify atall on|off")
         elif action == "list":
             yield event.plain_result(
                 f"监控房间：{'、'.join(map(str, self.rooms)) or '未配置'}\n"
                 f"推送目标：{len(self.targets)} 个\n"
-                f"轮询间隔：{self.interval} 秒"
+                f"轮询间隔：{self.interval} 秒\n"
+                f"@全体成员：{'开启' if self.config.get('at_all') else '关闭'}"
             )
         elif action == "status":
             rooms = self.rooms
@@ -172,6 +188,7 @@ class LiveNotifyPlugin(Star):
                 "开播推送插件\n"
                 "/live_notify bind —— 绑定当前会话为推送目标\n"
                 "/live_notify unbind —— 解绑当前会话\n"
+                "/live_notify atall on|off —— 开启或关闭 @全体成员\n"
                 "/live_notify list —— 查看配置\n"
                 "/live_notify status —— 手动查询开播状态"
             )
