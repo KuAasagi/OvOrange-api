@@ -24,6 +24,11 @@
     "type": "bool",
     "default": true
   },
+  "at_all": {
+    "description": "推送时是否 @全体成员，默认关闭；开启后需机器人有对应群权限",
+    "type": "bool",
+    "default": false
+  },
   "message_template": {
     "description": "开播通知模板，可用占位符：{uname} {title} {room_id} {url}",
     "type": "text",
