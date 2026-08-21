@@ -4,7 +4,7 @@ desc: 轮询 bilimonitor 的 /api/status 开播状态接口，主播开播时向
 short_desc: 主播开播自动推送（bilimonitor 联动）
 version: v1.0.2
 author: KuAasagi
-repo: https://github.com/KuAasagi/OvOrange-LiverMonitor
+repo: https://github.com/KuAasagi/OvOrange-api
 support_platforms:
   - aiocqhttp
   - telegram
