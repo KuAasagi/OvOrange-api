@@ -59,4 +59,5 @@ astrbot_plugin_live_notify/
 ---
 
 **仓库地址：** https://github.com/KuAasagi/OvOrange-api
+**OverOrange 网站：** https://ovorange.phrolove.top
 *本插件仅供技术交流使用，请合理使用接口并遵守相关法律法规。*
